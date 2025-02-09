@@ -1,0 +1,24 @@
+{
+    find_program_msvc_arch_x64_plat_windows_checktoolcc = {
+        ["cl.exe"] = [[C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\bin\HostX64\x64\cl.exe]]
+    },
+    find_programver = {
+        ["C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\cl.exe"] = "19.40.33813"
+    },
+    find_program_msvc_arch_x64_plat_windows_checktoolld = {
+        ["link.exe"] = [[C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\bin\HostX64\x64\link.exe]]
+    },
+    find_program = {
+        ["cl.exe"] = [[C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\bin\HostX64\x64\cl.exe]],
+        ["C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\cl.exe"] = [[C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\bin\HostX64\x64\cl.exe]],
+        zig = "zig",
+        nim = false
+    },
+    ["lib.detect.has_flags"] = {
+        ["windows_x64_C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\cl.exe_19.40.33813_cxx_cxflags_-nologo_cl_sourceDependencies"] = true,
+        ["windows_x64_C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\cl.exe_19.40.33813_cc_cxflags_-nologo_cl_sourceDependencies"] = true
+    },
+    find_program_msvc_arch_x64_plat_windows_checktoolcxx = {
+        ["cl.exe"] = [[C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\bin\HostX64\x64\cl.exe]]
+    }
+}
