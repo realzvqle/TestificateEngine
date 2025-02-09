@@ -9,9 +9,10 @@ set_xmakever("2.6.0")
 target("engine")
     set_kind("binary")
     add_files("src/*.cpp")
-    add_files("src/**/.cpp")
-
+    add_files("src/**/*.cpp")
     add_files("src/*.c")
+
+    add_files("src/**/*.c")
     add_files("imgui/*.cpp")
     add_includedirs("./include")  
     add_linkdirs("lib")  
