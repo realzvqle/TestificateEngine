@@ -3,14 +3,13 @@
 #include "engine/window.hpp"
 
 int main(){
-    Window window;
-    window.InitWindow(1600, 900, "Testificate");
+    Window::InitWindow(1600, 900, "Testificate");
     Rectangle rect;
     float red = 1.0f;
     float green = 1.0f;
     float blue = 1.0f;
-    while(!window.WindowShouldClose()){
-        window.ClearBackground(0, 0, 0, 0);
+    while(!Window::WindowShouldClose()){
+        Window::ClearBackground(0, 0, 0, 0);
         ImGui::NewFrame();
         ImGui::Begin("Testificate");
         ImGui::Text("Hello World!");
@@ -22,7 +21,7 @@ int main(){
         ImGui::End();
         ImGui::Render();
         rect.DrawRectangle(Engine::RGB(red, green, blue, 1.0f));
-        window.WindowSwap();
+        Window::WindowSwap();
     }
-    window.CleanUp();
+    Window::CleanUp();
 }
