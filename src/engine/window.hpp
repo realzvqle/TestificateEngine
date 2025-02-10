@@ -16,6 +16,7 @@ class Window {
         void WindowSwap();
         void ClearBackground(float red, float green, float blue, float alpha);
         int WindowShouldClose();
+        bool IsKeyPressed(int key);
         void CleanUp();
     };
 

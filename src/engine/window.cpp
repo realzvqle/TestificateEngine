@@ -59,3 +59,8 @@ void Window::CleanUp(){
     ImGui::DestroyContext();
     glfwTerminate();
 }
+
+bool Window::IsKeyPressed(int key){
+    if(glfwGetKey(this->window, key)) return true;
+    else return false;
+}
