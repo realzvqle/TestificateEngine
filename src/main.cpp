@@ -8,6 +8,7 @@ int main(){
         ImGui::NewFrame();
         ImGui::Begin("Testificate");
         ImGui::Text("Hello World!");
+        ImGui::Button("idk", {90, 90});
         ImGui::End();
         ImGui::Render();
         window.WindowSwap();
