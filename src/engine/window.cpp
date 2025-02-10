@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include "engine.h"
 
 
 namespace Window {
@@ -33,7 +34,7 @@ namespace Window {
         ImGui::StyleColorsDark();
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init("#version 330");
-        
+        glEnable(GL_DEPTH_TEST);  
         return 0;
     }
     
@@ -44,7 +45,7 @@ namespace Window {
     }
     
     void ClearBackground(float red, float green, float blue, float alpha){
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(red, green, blue, alpha);
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
