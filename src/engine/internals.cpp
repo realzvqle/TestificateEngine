@@ -24,7 +24,7 @@ namespace Engine {
         static float lasttime = glfwGetTime();
         float currenttime = glfwGetTime();
 
-        const auto elapsedTime = currenttime - lasttime;
+        const float elapsedTime = currenttime - lasttime;
         ++fpscount;
 
         if (elapsedTime > 1) {
