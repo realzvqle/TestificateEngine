@@ -20,7 +20,7 @@ class Cube {
         unsigned int EBO;
         unsigned int program;
     public:
-        Cube(float size);
+        Cube();
         void DrawCube(Engine::Color color, glm::vec3 pos, float rotation);
 };
 

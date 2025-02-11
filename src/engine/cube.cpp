@@ -1,12 +1,13 @@
 #include "cube.hpp"
+#include "camera.hpp"
 #include "engine.h"
 #include "fileio.hpp"
 #include "shader.hpp"
 #include "internals.hpp"
 
 
-Cube::Cube(float size){
-    float half = size / 2;
+Cube::Cube(){
+    float half = 0.3f / 2;
     float vertices[] = {
         -half, -half, -half,  
          half, -half, -half,  
@@ -90,9 +91,9 @@ Cube::Cube(float size){
 void Cube::DrawCube(Engine::Color color, glm::vec3 pos, float rotation){
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, pos) * glm::rotate(model, glm::radians(rotation), glm::vec3(0.5f, 1.0f, 0.0f));  
- 
-    glm::mat4 view = glm::mat4(1.0f);
-    view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+    glm::mat4 view = Camera::ReturnCamera();
+    // glm::mat4 view = glm::mat4(1.0f);
+    // view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
     glm::mat4 projection;
     projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
     int colorLocation = glGetUniformLocation(this->program, "ourColor");
@@ -112,3 +113,5 @@ void Cube::DrawCube(Engine::Color color, glm::vec3 pos, float rotation){
 
     //glBindVertexArray(0);
 }
+
+
