@@ -19,6 +19,9 @@ namespace Engine {
     } Color;
     Color RGB(float red, float green, float blue, float alpha);
     void SetWiredMode();
+    void CalculateFrameRate();
+    int GetFPS();
+    double GetDeltaTime();
 }
 
 

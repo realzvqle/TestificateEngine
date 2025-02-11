@@ -90,7 +90,9 @@ Cube::Cube(){
 
 void Cube::DrawCube(Engine::Color color, glm::vec3 pos, float rotation){
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, pos) * glm::rotate(model, glm::radians(rotation), glm::vec3(0.5f, 1.0f, 0.0f));  
+    model = glm::translate(glm::mat4(1.0f), pos);
+    model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = glm::scale(model, glm::vec3(1.0f, 1.4f, 1.0f));
     glm::mat4 view = Camera::ReturnCamera();
     // glm::mat4 view = glm::mat4(1.0f);
     // view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));

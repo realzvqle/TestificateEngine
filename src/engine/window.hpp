@@ -7,7 +7,6 @@
 #include "engine.h"
 
 
-
 namespace Window {
     int InitWindow(int width, int height, const char* title);
     void WindowSwap();
@@ -15,6 +14,7 @@ namespace Window {
     int WindowShouldClose();
     void CleanUp();
     bool IsKeyPressed(int key);
+    void SetWindowTitle(const char* format, ...);
 }
 
 #endif

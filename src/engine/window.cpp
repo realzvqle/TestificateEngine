@@ -1,6 +1,7 @@
 #include "window.hpp"
 #include "engine.h"
-
+#include "internals.hpp"
+#include <format>
 
 namespace Window {
 
@@ -42,6 +43,7 @@ namespace Window {
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         glfwSwapBuffers(window);
         glfwPollEvents();
+        Engine::CalculateFrameRate();
     }
     
     void ClearBackground(float red, float green, float blue, float alpha){
@@ -66,6 +68,16 @@ namespace Window {
         if(glfwGetKey(window, key)) return true;
         else return false;
     }
+
+    void SetWindowTitle(const char* format, ...) {
+        char buffer[256];
+        va_list args;
+        va_start(args, format);    
+        vsnprintf(buffer, sizeof(buffer), format, args);    
+        va_end(args);
+        glfwSetWindowTitle(window, buffer);
+    }
+
 }
 
 
