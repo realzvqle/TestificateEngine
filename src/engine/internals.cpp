@@ -4,6 +4,8 @@
 
 
 namespace Engine {
+    static int fpscount = 0;
+    static int fps = 0; 
     Color RGB(float red, float green, float blue, float alpha){
         Color color = {red, green, blue, alpha};
         return color;
@@ -17,27 +19,25 @@ namespace Engine {
         if(isWired == true) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         else glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
-    int fpscount = 0;
-    int fps = 0;
-    std::chrono::time_point<std::chrono::steady_clock> lastTime = std::chrono::steady_clock::now();
-    std::chrono::duration<double> deltaTime = std::chrono::duration<double>::zero();
-
+    
     void CalculateFrameRate() {
-        auto currentTime = std::chrono::steady_clock::now();
-        deltaTime = currentTime - lastTime;
+        static float lasttime = glfwGetTime();
+        float currenttime = glfwGetTime();
+
+        const auto elapsedTime = currenttime - lasttime;
         ++fpscount;
-        if (deltaTime.count() >= 1.0) {
-            lastTime = currentTime;
+
+        if (elapsedTime > 1) {
+            lasttime = currenttime;
             fps = fpscount;
             fpscount = 0;
         }
     }
 
-    double GetDeltaTime() {
-        return deltaTime.count();  
-    }
-
-    int GetFPS() {
+    int GetFPS(){
         return fps;
+    }
+    double GetDeltaTime(){ // deltatime
+        return 1.1; // don't have an implementation
     }
 }
