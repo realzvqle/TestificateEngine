@@ -1,6 +1,5 @@
 #include "internals.hpp"
 #include "engine.h"
-#include <chrono>
 
 
 namespace Engine {
@@ -19,6 +18,20 @@ namespace Engine {
         if(isWired == true) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         else glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
+    // void SetCulled(){
+    //     static bool isCulled = false;
+    //     if(isCulled == false) isCulled = true;
+    //     else isCulled = false;
+
+    //     if(isCulled == true){
+    //         glEnable(GL_CULL_FACE);
+    //         glCullFace(GL_FRONT);
+    //         glFrontFace(GL_CW);
+    //         glDepthFunc(GL_LESS);
+
+    //     } 
+    //     else glDisable(GL_CULL_FACE);
+    // }
     
     void CalculateFrameRate() {
         static float lasttime = glfwGetTime();

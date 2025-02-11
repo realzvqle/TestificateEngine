@@ -5,82 +5,74 @@
 #include "shader.hpp"
 #include "internals.hpp"
 
+// namespace Shader {
+//     extern unsigned int program;
+// }
 
+static bool setup = false;
+static unsigned int VBO;
+static unsigned int VAO;
 Cube::Cube(){
     float half = 0.3f / 2;
     float vertices[] = {
+        -half, -half,  half,  
+        half, -half,  half,  
+        half,  half,  half,  
+        half,  half,  half,  
+        -half,  half,  half,  
+        -half, -half,  half,  
+
+        half, -half, -half,  
         -half, -half, -half,  
-         half, -half, -half,  
-         half,  half, -half,  
-         half,  half, -half,  
+        -half,  half, -half,  
+        -half,  half, -half,  
+        half,  half, -half,  
+        half, -half, -half,  
+
+        -half, -half, -half,  
+        -half, -half,  half,  
+        -half,  half,  half,  
+        -half,  half,  half,  
         -half,  half, -half,  
         -half, -half, -half,  
-    
+
+        half, -half,  half,  
+        half, -half, -half,  
+        half,  half, -half,  
+        half,  half, -half,  
+        half,  half,  half,  
+        half, -half,  half,  
+
+        -half, -half, -half,  
+        half, -half, -half,  
+        half, -half,  half,  
+        half, -half,  half,  
         -half, -half,  half,  
-         half, -half,  half,  
-         half,  half,  half,  
-         half,  half,  half,  
+        -half, -half, -half,  
+
         -half,  half,  half,  
-        -half, -half,  half,  
-    
-        -half,  half,  half,  
+        half,  half,  half,  
+        half,  half, -half,  
+        half,  half, -half,  
         -half,  half, -half,  
-        -half, -half, -half,  
-        -half, -half, -half,  
-        -half, -half,  half,  
-        -half,  half,  half,  
-    
-         half,  half,  half,  
-         half,  half, -half,  
-         half, -half, -half,  
-         half, -half, -half,  
-         half, -half,  half,  
-         half,  half,  half,  
-    
-        -half, -half, -half,  
-         half, -half, -half,  
-         half, -half,  half,  
-         half, -half,  half,  
-        -half, -half,  half,  
-        -half, -half, -half,  
-    
-        -half,  half, -half,  
-         half,  half, -half,  
-         half,  half,  half,  
-         half,  half,  half,  
-        -half,  half,  half,  
-        -half,  half, -half  
+        -half,  half,  half  
     };
-
-    this->indices[0] = 0;
-    this->indices[1] = 1;
-    this->indices[2] = 3;
-    this->indices[3] = 1;
-    this->indices[4] = 2;
-    this->indices[5] = 3;
     
+   
+    if(!setup){
+        glGenVertexArrays(1, &VAO);
+        glBindVertexArray(VAO);
+        
+        glGenBuffers(1, &VBO);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        setup = true;
+        std::printf("Setup!\n");
+    }
     
-    glGenVertexArrays(1, &this->VAO);
-    glBindVertexArray(this->VAO);
-    
-    glGenBuffers(1, &this->VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+ 
 
-    glGenBuffers(1, &this->EBO);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(this->indices), this->indices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
-
-    
-    std::string vertexsrc = FileIO::ReadFile("glsl/vertex.glsl");
-    std::string fragsrc = FileIO::ReadFile("glsl/fragment.glsl");
-    unsigned int vertexobj = Shader::CompileShader(vertexsrc, Shader::VERTEX);
-    unsigned int fragobj = Shader::CompileShader(fragsrc, Shader::FRAGMENT);
-    this->program = Shader::LinkShaders(vertexobj, fragobj);
-
-    glDeleteShader(vertexobj);
-    glDeleteShader(fragobj);  
+    this->program = Shader::ReturnShaderProgram();
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0); 
@@ -89,8 +81,9 @@ Cube::Cube(){
 
 
 void Cube::DrawCube(Engine::Color color, glm::vec3 pos, float rotation){
+    this->pos = pos;
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(glm::mat4(1.0f), pos);
+    model = glm::translate(glm::mat4(1.0f), this->pos);
     model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
     model = glm::scale(model, glm::vec3(1.0f, 1.4f, 1.0f));
     glm::mat4 view = Camera::ReturnCamera();
@@ -109,10 +102,10 @@ void Cube::DrawCube(Engine::Color color, glm::vec3 pos, float rotation){
     glUniformMatrix4fv(viewlocation, 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(projectionlocation, 1, GL_FALSE, glm::value_ptr(projection));
 
-    glBindVertexArray(this->VAO);
+    glBindVertexArray(VAO);
     //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glDrawArrays(GL_TRIANGLES, 0, 36);
-
+    //glFrontFace(GL_CCW);
     //glBindVertexArray(0);
 }
 

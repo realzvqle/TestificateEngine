@@ -1,9 +1,12 @@
 #include "shader.hpp"
 #include "engine.h"
-
+#include "fileio.hpp"
 
 
 namespace Shader {
+    static unsigned int vertexobj;
+    static unsigned int fragobj;
+    unsigned int program;
     unsigned int CompileShader(std::string source, ShaderType type){
         unsigned int shader;
         const char* shadersrc = source.c_str();
@@ -39,5 +42,24 @@ namespace Shader {
             return 0;
         } else return program;
     }
+
+    void StartShaders(){
+        std::string vertexsrc = FileIO::ReadFile("glsl/vertex.glsl");
+        std::string fragsrc = FileIO::ReadFile("glsl/fragment.glsl");
+        vertexobj = Shader::CompileShader(vertexsrc, Shader::VERTEX);
+        fragobj = Shader::CompileShader(fragsrc, Shader::FRAGMENT);
+        program = Shader::LinkShaders(vertexobj, fragobj);
+        glDeleteShader(vertexobj);
+        glDeleteShader(fragobj);  
+    }
+
+    unsigned int ReturnShaderProgram(){
+        return program;
+    }
+
+    void CleanUpShaders(){
+        glDeleteProgram(program);
+    }
+    
 
 }

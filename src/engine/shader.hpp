@@ -20,6 +20,9 @@ namespace Shader {
     } ShaderType;
     unsigned int CompileShader(std::string source, ShaderType type);
     unsigned int LinkShaders(unsigned int fragshader, unsigned int vertshader);
+    void StartShaders();
+    unsigned int ReturnShaderProgram();
+    void CleanUpShaders();
 }
 
 

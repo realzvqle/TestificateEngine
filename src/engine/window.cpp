@@ -1,7 +1,7 @@
 #include "window.hpp"
 #include "engine.h"
 #include "internals.hpp"
-#include <format>
+#include "shader.hpp"
 
 namespace Window {
 
@@ -36,6 +36,11 @@ namespace Window {
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init("#version 330");
         glEnable(GL_DEPTH_TEST);  
+        Shader::StartShaders();
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK); 
+        glFrontFace(GL_CCW);
+        
         return 0;
     }
     
@@ -44,6 +49,7 @@ namespace Window {
         glfwSwapBuffers(window);
         glfwPollEvents();
         Engine::CalculateFrameRate();
+        //glEnable(GL_CULL_FACE);
     }
     
     void ClearBackground(float red, float green, float blue, float alpha){
@@ -61,6 +67,7 @@ namespace Window {
         ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplGlfw_Shutdown();
         ImGui::DestroyContext();
+        Shader::CleanUpShaders();
         glfwTerminate();
     }
     

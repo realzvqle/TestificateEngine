@@ -1,10 +1,11 @@
+#include "engine/cube.hpp"
 #include "engine/internals.hpp"
 #include "engine/window.hpp"
 #include "game/terrain.hpp"
 #include "game/control.hpp"
 int main(){
     Window::InitWindow(1600, 900, "Testificate");
-    
+    Cube cube;
     while(!Window::WindowShouldClose()){
         Window::ClearBackground(0, 0, 0, 0);
         Control();
@@ -16,6 +17,7 @@ int main(){
         if(isClicked) Engine::SetWiredMode();
         ImGui::End();
         ImGui::Render();
+        //cube.DrawCube(Engine::RGB(1.0, 1.0, 1.0, 1.0), glm::vec3(0.5, 0.5, 0.5), 0);
         DrawTerrain();
         Window::WindowSwap();
     }
