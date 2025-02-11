@@ -3,14 +3,18 @@
 #include "engine/window.hpp"
 #include "game/terrain.hpp"
 #include "game/control.hpp"
+#include <cstdio>
 int main(){
     Window::InitWindow(1600, 900, "Testificate");
+    Window::LockMouse();
     Cube cube;
+    
     while(!Window::WindowShouldClose()){
         Window::ClearBackground(0, 0, 0, 0);
         Control();
         ImGui::NewFrame();
         ImGui::Begin("Testificate");
+        std::printf("%f\n", Window::ReturnMouseX());
         //ImGui::Text("%d fps", Engine::GetFPS());
         Window::SetWindowTitle("Testificate Engine - %d fps", Engine::GetFPS());
         bool isClicked = ImGui::Button("Set Wired Mode?", {120, 45});

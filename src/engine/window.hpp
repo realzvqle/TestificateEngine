@@ -15,6 +15,10 @@ namespace Window {
     void CleanUp();
     bool IsKeyPressed(int key);
     void SetWindowTitle(const char* format, ...);
+    void LockMouse();
+    void UnlockMouse();
+    double ReturnMouseX();
+    double ReturnMouseY();
 }
 
 #endif

@@ -85,6 +85,28 @@ namespace Window {
         glfwSetWindowTitle(window, buffer);
     }
 
+    void LockMouse(){
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    }
+
+    void UnlockMouse(){
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    }
+
+    double ReturnMouseX(){
+        double xpos;
+        //double ypos;
+        glfwGetCursorPos(window, &xpos, NULL);
+        return xpos;
+    }
+
+    double ReturnMouseY(){
+        double ypos;
+        //double ypos;
+        glfwGetCursorPos(window, NULL, &ypos);
+        return ypos;
+    }
+
 }
 
 
