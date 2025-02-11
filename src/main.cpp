@@ -30,6 +30,8 @@ int main(){
         if(Window::IsKeyPressed(GLFW_KEY_S)) Camera::SetCameraX(-0.001f);
         if(Window::IsKeyPressed(GLFW_KEY_D)) Camera::SetCameraZ(0.001f);
         if(Window::IsKeyPressed(GLFW_KEY_A)) Camera::SetCameraZ(-0.001f);
+        if(Window::IsKeyPressed(GLFW_KEY_UP)) Camera::SetCameraY(0.001f);
+        if(Window::IsKeyPressed(GLFW_KEY_DOWN)) Camera::SetCameraY(-0.001f);
         ImGui::NewFrame();
         ImGui::Begin("Testificate");
         bool isClicked = ImGui::Button("Set Wired Mode?", {120, 45});
