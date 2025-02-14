@@ -36,6 +36,7 @@ namespace Window {
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init("#version 330");
         glEnable(GL_DEPTH_TEST);  
+        glDepthFunc(GL_LESS);
         Shader::StartShaders();
         glEnable(GL_CULL_FACE);
         glCullFace(GL_BACK); 

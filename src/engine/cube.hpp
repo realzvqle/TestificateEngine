@@ -18,8 +18,9 @@ class Cube {
         unsigned int program;  
     public:
         glm::vec3 pos;
-        Cube();
-        void DrawCube(Engine::Color color, glm::vec3 pos, float rotation);
+        bool visible = false;
+        Cube(glm::vec3 pos);
+        void DrawCube(Engine::Color color, float rotation);
 };
 
 

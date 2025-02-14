@@ -12,7 +12,7 @@
 static bool setup = false;
 static unsigned int VBO;
 static unsigned int VAO;
-Cube::Cube(){
+Cube::Cube(glm::vec3 pos){
     float half = 0.3f / 2;
     float vertices[] = {
         -half, -half,  half,  
@@ -68,7 +68,7 @@ Cube::Cube(){
         setup = true;
         std::printf("Setup!\n");
     }
-    
+    this->pos = pos;
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
  
 
@@ -80,8 +80,8 @@ Cube::Cube(){
 }
 
 
-void Cube::DrawCube(Engine::Color color, glm::vec3 pos, float rotation){
-    this->pos = pos;
+void Cube::DrawCube(Engine::Color color, float rotation){
+    //if(visible != true) return;
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(glm::mat4(1.0f), this->pos);
     model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
