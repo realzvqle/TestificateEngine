@@ -22,6 +22,7 @@ namespace Engine {
     void CalculateFrameRate();
     int GetFPS();
     double GetDeltaTime();
+    void CalculateDeltaTime();
 }
 
 

@@ -49,6 +49,7 @@ namespace Window {
         glfwSwapBuffers(window);
         glfwPollEvents();
         Engine::CalculateFrameRate();
+        Engine::CalculateDeltaTime();
         //glEnable(GL_CULL_FACE);
     }
     

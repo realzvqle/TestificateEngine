@@ -50,7 +50,14 @@ namespace Engine {
     int GetFPS(){
         return fps;
     }
-    double GetDeltaTime(){ // deltatime
-        return 1.1; // don't have an implementation
+    static double prevtime;
+    static double curtime;
+    void CalculateDeltaTime(){ 
+        prevtime = curtime;
+        curtime = glfwGetTime();
+    }
+    
+    double GetDeltaTime(){
+        return curtime - prevtime;
     }
 }

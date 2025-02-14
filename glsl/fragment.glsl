@@ -4,5 +4,5 @@ out vec4 FragColor;
 uniform vec4 ourColor;
 in vec4 vertexColor;
 void main() {
-    FragColor = ourColor + vertexColor;
+    FragColor = ourColor + vertexColor ;
 }
