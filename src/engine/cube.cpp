@@ -66,7 +66,7 @@ Cube::Cube(glm::vec3 pos){
         glGenBuffers(1, &VBO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         setup = true;
-        std::printf("Setup!\n");
+        //std::printf("Setup!\n");
     }
     this->pos = pos;
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
